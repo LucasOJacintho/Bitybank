@@ -1,0 +1,25 @@
+<!-- Na linha abaixo falamos que o component nova-tranferencia, possui um evento que ao ser chamado dispara um método dentro do componente atual no caso app.component esse método precisa de uma informação para ser lançada, no caso é passado a variável $event-->
+<!-- Toda vez que tentamos propagar um evento, é necessário colocar $event como o parâmetro -->
+<!-- <app-nova-transferencia (aoTransferir)="transferir($event)"></app-nova-transferencia> -->
+
+<!-- <app-nova-transferencia></app-nova-transferencia> -->
+
+<!-- Nós passamos a informação para o componente app-component
+Depois falamos que a variável transferencia do componente app-extrato recebe os valores dentro da variável tranferencia do component  -->
+<!-- Esse sistema só funcionou pois existe a notação @Input no valor tranferência do componenent extrato além
+disso, é necessário que coloquemos o valor dentro de []
+<app-extrato [transferencias]="transferencias"> </app-extrato>
+-->
+
+<!-- <app-extrato></app-extrato> -->
+
+<header>
+    <!-- Similar ao href porém o routerLink se responsabiliza apenas pela parte da página que estamos trabalhando -->
+    <a routerLink="extrato">ByteBank</a>
+    <!-- O routerLinkActive ele avalia se o link em questão está ativo caso esteja ele insere uma caracteristica que pode ser usada no stilo -->
+    <a routerLink="nova-transferencia" routerLinkActive="ativo">Nova Transferência</a>
+</header>
+
+<main>
+    <router-outlet></router-outlet>
+</main>

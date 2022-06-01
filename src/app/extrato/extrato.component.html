@@ -1,0 +1,31 @@
+<!-- Como o array, não possui elementos, esse trecho do código não será exibido, só após realizar uma transferência -->
+<section class="container">
+    <h2 class="titulo">EXTRATO</h2>
+
+    <!-- o comando *ngIf tem como função fazer uma validação lógica, com isso esse determina se será exibido tudo o que dentro da tag onde ele se encontra, informamos no else que caso ele não seja exibido tem que apresentar a tag com o nome em questão, veja mais abaixo -->
+
+    <table class="tabela" *ngIf="transferencias.length > 0; else listaVazia">
+        <thead class="titulo__cabecalho">
+            <th class="tabela__cabecalho__conteudo">Data</th>
+            <th class="tabela__cabecalho__conteudo">valor</th>
+            <th class="tabela__cabecalho__conteudo">Destino</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let transferencia of transferencias" class="tabela__linha">
+                <!-- {{}} interpolação de um valor -->
+                <!-- Perceba o ? na frente do transferencia, aqui ele está acessando o dicionário que ele recebeu e está buscando para nós, teóricamente ele apenas sabe que ele recebeu um objeto -->
+                <!-- Para manipular datas uma das formas possíveis diretamente por pipe de modificação -->
+                <!--No arquivo app.module é possível ver a alteração feita-->
+                <td class="tabela__conteudo">{{transferencia?.data | date: "short"}}</td>
+                <!-- Inserimos o pipe esse padrão dentro do app.module -->
+                <td class="tabela__conteudo">{{transferencia?.valor | currency}}</td>
+                <td class="tabela__conteudo">{{transferencia?.destino}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <section>
+
+        <!-- O ng-template cria um ambiente que só pode ser usado mediante ser chamado pela atividades do angular -->
+        <ng-template #listaVazia>
+            <p class="titulo">Nenhuma operação cadastrada</p>
+        </ng-template>
